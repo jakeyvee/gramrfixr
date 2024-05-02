@@ -25,7 +25,7 @@ export default function Footer() {
       </p>
       <div className="mt-4 flex items-center gap-2 sm:mt-0">
         <Link
-          href="https://twitter.com/gyurisc"
+          href="https://twitter.com/metacampdao"
           className="group"
           aria-label="Author on Twitter"
         >
@@ -37,7 +37,7 @@ export default function Footer() {
           </svg>
         </Link>
         <Link
-          href="https://github.com/gyurisc/gramrfixr"
+          href="https://github.com/jakeyvee/gramrfixr"
           className="group"
           aria-label="GramrFixr on GitHub"
         >
