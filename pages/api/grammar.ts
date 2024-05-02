@@ -1,15 +1,13 @@
 import type { NextApiRequest, NextApiResponse } from "next";
-import { Configuration, OpenAIApi } from "openai";
+import OpenAI from "openai";
 
 if (!process.env.OPENAI_API_KEY) {
   throw new Error("Missing env var from OpenAI");
 }
 
-const configuration = new Configuration({
+const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
 });
-
-const openai = new OpenAIApi(configuration);
 
 export type Correction = {
   original: string;
@@ -52,12 +50,13 @@ function getIndicesOf(
 }
 
 function generatePrompt(message: string) {
-  return `Pretend that you are an English Grammar teacher. 
-    Correct the grammatical mistakes in this text by replying in JSON. 
-    The JSON should contain a corrections array and each correction should contain the original word that needs to be corrected, and the recommended correction for the word as well.
+  return `Pretend that you are a Dale Carnegie, the author of "How to Win Friends and Influence People". 
+    Using the principles in the book, improve on the parts of the text by replying in JSON. 
+    The JSON should contain a corrections array and for each object contains the original and corrected key.
+    Only include words that are to be corrected, exclude words that do not need to be modified.
     The output should be json. 
     
-    Here is my text: ${message}.`;
+    Here is my text: ${message}`;
 }
 
 const defaultErrorMessage = "Failed to process your request";
@@ -77,9 +76,10 @@ export default async function handler(
 
     let prompt = generatePrompt(content);
 
-    const completion = await openai.createChatCompletion({
-      model: "gpt-3.5-turbo",
+    const completion = await openai.chat.completions.create({
+      model: "gpt-4-turbo",
       messages: [{ role: "user", content: prompt }],
+      response_format: { type: "json_object" },
       temperature: 0.7,
       top_p: 1,
       frequency_penalty: 0,
@@ -89,9 +89,10 @@ export default async function handler(
     });
 
     const response_content = (
-      completion?.data?.choices[0]?.message?.content ?? "[]"
+      completion?.choices[0]?.message?.content ?? "[]"
     ).toString();
     const response = JSON.parse(response_content);
+    console.log(response)
 
     console.log("corrections by openai :: ", response?.corrections);
 

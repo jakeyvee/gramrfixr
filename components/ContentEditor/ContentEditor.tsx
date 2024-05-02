@@ -13,9 +13,7 @@ import {
 } from "./extensions/GrammarChecker";
 import { Match, Range, Replacement } from "./extensions/GrammarChecker.types";
 
-const defaultContent = `<p>Biology is a really unique scient to study. There are alott of different aspects to it, such as ecology, genetics, and physiology. One of the most interesitng things to learn about in biology is animals and the way they behave. For example, did you know that some birds give hugs to their babies to keep them warm? That's so cute!</p>
-
-<p>Another important aspect of biology is understanding the structure and function of different living things. Cells are the basic building blocks of all living organisms, and they are responsible for carrying out all of the processes necessary for life. Studying the biology of cells is important for understanding everything from how the body works to how diseases develop.</p>`;
+const defaultContent = `Win friends and influence people, like how Dale Carnegie did! Replace the text here with the paragraph you'd like to improve on.`;
 
 const ContentEditor = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -31,7 +29,7 @@ const ContentEditor = () => {
     editorProps: {
       attributes: {
         class:
-          "border border-gray-300 min-h-[200px] p-3 prose dark:prose-invert focus:outline-none max-w-full",
+          "border border-gray-300 min-h-[200px] p-3 dark:prose-invert focus:outline-none max-w-full",
       },
     },
     onUpdate({ editor }) {
@@ -214,7 +212,7 @@ const ContentEditor = () => {
         {isLoading ? (
           <LoadingDots color="white" style="large" />
         ) : (
-          "Check My Grammar"
+          "Improve Paragraph"
         )}
       </button>
     </div>
