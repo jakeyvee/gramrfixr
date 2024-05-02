@@ -1,10 +1,10 @@
 import { Html, Head, Main, NextScript } from 'next/document'
 
 export default function Document() {
-  let description = "Let GramrFixr improve your text in seconds.";
+  let description = "Let Intonaid improve your text in seconds.";
   let ogimage = "";
-  let sitename = "gramrfixr.com";
-  let title = "GramrFixr";
+  let sitename = "intonaid.com";
+  let title = "Intonaid";
   return (
     <Html lang="en">
       <Head>

@@ -8,7 +8,7 @@ export default function Home() {
   return (
     <div className="mx-auto my-8 flex min-h-screen max-w-5xl flex-col px-4 sm:my-16">
       <Head>
-        <title>GramrFixr</title>
+        <title>Intonaid</title>
         <meta
           name="description"
           content="An easy to use app to fix your grammar"
